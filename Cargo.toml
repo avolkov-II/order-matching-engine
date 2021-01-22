@@ -1,0 +1,29 @@
+[package]
+name = "order-matching-engine"
+version = "0.1.0"
+authors = ["Alexei Volkov <avolkov@fastmail.com>"]
+edition = "2018"
+description = "High-performance limit order book and matching engine in Rust"
+
+[dependencies]
+tokio = { version = "0.2", features = ["full"] }
+crossbeam = "0.8"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+chrono = { version = "0.4", features = ["serde"] }
+log = "0.4"
+env_logger = "0.8"
+thiserror = "1.0"
+rand = "0.7"
+
+[dev-dependencies]
+criterion = "0.3"
+
+[[bench]]
+name = "matching_bench"
+harness = false
+
+[profile.release]
+lto = true
+codegen-units = 1
+opt-level = 3
